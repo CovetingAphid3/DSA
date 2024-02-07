@@ -85,7 +85,31 @@ class linkedList{
         }
     }
     //return node at index
+    findAt(index){
+        if(!this.head){
+            return `Empty list`
+        }
+        else{
+            let count = 0
+            let current = this.head
+            while(current.next){
+                if(count === index){
+                    return current.value
+                }
+                current = current.next
+                count ++
+            }
+            
+        }
+    }
     //remove head
+    removeHead(){
+        let current = this.head
+        this.head = current.next
+        let previous = current
+        previous = null
+
+    }
     //return if value exists
     find(data){
         if(!this.head){
@@ -95,7 +119,7 @@ class linkedList{
             let current = this.head
             while(current.next){
                 if(current.value===data){
-                    return current
+                    return true
                 }
                 current = current.next
             }
@@ -108,25 +132,77 @@ class linkedList{
     }   
     //insert at index
     insert(data,index){
-        if(index==0){
-           this.prepend(data) 
+        
+        if(!this.head){
+            return `Empty list`
         }
-        if(index>this.size){
-            console.log(`index out of range`)
+        if(index == 0){
+            this.prepend(data)
         }
-        let current,previous
+        else if(index>=this.size){
+            return `index out of range`
+        }
+        else if(index===-1 || index == this.size-1){
+            this.append(data)
+        }   
+        else{
+            let count = 0
+            let current = this.head
+            let previous
+            while(current.next){
+                
+                if(count === index){
+                    let node = new Node(data)
+                    previous.next = node
+                    node.next = current
+                    return
+                }
+                previous = current
+                current = current.next
+                count ++
+            }
+            
+        }
     }
     //remove at index
-    //reverse list
+    removeAt(index){
+        if(!this.head){
+            return `Empty list`
+        }
+        
+        else if(index>=this.size){
+            return `index out of range`
+        }
+        if(index === 0){
+            this.removeHead()
+        }
+        else if(index === -1 || index == this.size-1){
+            this.removeLast()
+        }  
+        else{
+            let count = 0
+            let current = this.head
+            let previous
+            while(current.next){
+                
+                if(count === index){
+                    previous.next = previous.next.next
+                    current = null
+                    return
+                }
+                previous = current
+                current = current.next
+                count ++
+            }
+            
+        }
+    }
+    //create linked list from array
+    listFromArray(array){
+        for(let i = array.length-1;i>=0;i--){
+            this.prepend(array[i])
+        }
+    }
+
 }
 
-let ll = new linkedList()
-
-ll.prepend(1)
-ll.append(2)
-ll.append(3)
-ll.append(4)
-console.log(ll.find(1))
-console.log(ll.length())
-console.log(ll.printList())
-console.log(ll)
