@@ -1,4 +1,3 @@
-console.log('test')
 
 class Node{
     constructor(value,next){
@@ -47,7 +46,7 @@ class linkedList{
                 array.push(current.next.value)
                 current = current.next
             }
-            return array
+            return array.join("->")
         }
     }
     //return head of list
@@ -203,6 +202,29 @@ class linkedList{
             this.prepend(array[i])
         }
     }
-
+    //reverse linked list
+    reverse() {
+        if (!this.head || !this.head.next) {
+            return;
+        }
+    
+        let previous = null;
+        let current = this.head;
+        let next;
+    
+        while (current) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+    
+        this.head = previous;
+    }
+    
 }
-
+const array = [1,2,3,4,5,6]
+let ll = new linkedList()
+ll.listFromArray(array)
+ll.reverse()
+console.log(ll.printList())
