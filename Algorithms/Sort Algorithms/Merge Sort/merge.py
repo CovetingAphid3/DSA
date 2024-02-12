@@ -1,7 +1,5 @@
 
 
-start_time = time.time()
-
 def merge(arr):
 
     if len(arr) == 1:
