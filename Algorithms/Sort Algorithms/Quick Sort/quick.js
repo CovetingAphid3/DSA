@@ -38,13 +38,5 @@ const quickSort = (array, lo, hi) => {
         quickSort(array, partitionIndex + 1, hi)
 
     }
-
+    return array
 }
-
-const test = () => {
-    const arr = [64, 25, 12, 22, 11];
-    quickSort(arr,0,arr.length -1)
-    console.log(arr)
-}
-
-test()
