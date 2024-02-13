@@ -1,4 +1,4 @@
-def insert(array):
+def selection(array):
     n = len(array)
     for i in range(n):
         smallestIndex = i
@@ -9,5 +9,5 @@ def insert(array):
     return array    
 
 test_array = [6,87,3,2,1,0]
-sorted_array = insert(test_array)
+sorted_array = selection(test_array)
 print(sorted_array)
