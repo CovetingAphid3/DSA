@@ -1,4 +1,4 @@
-const insert = (array) => {
+const selection = (array) => {
     let n = array.length
     for (let i = 0; i < n; i++) {
         let smallestIndex = i
@@ -13,5 +13,5 @@ const insert = (array) => {
 }
 
 let testArray = [8, 5, 3, 2, 7, 1]
-let sortedArray = insert(testArray)
+let sortedArray = selection(testArray)
 console.log(sortedArray)
