@@ -23,10 +23,39 @@ class Graph {
             console.log(`${vertex} -> ${neighbors.join(', ')}`)
         }
     }
+    DFS(start, needle) {
+        if (!start || !this.adjacencyList[start]) {
+            return null; // Vertex not found in the graph
+        }
+
+        const visited = {};
+        const result = [];
+
+        const dfsHelper = (vertex) => {
+            if (!visited[vertex]) {
+                visited[vertex] = true;
+                result.push(vertex);
+
+                for (const neighbor of this.adjacencyList[vertex]) {
+                    dfsHelper(neighbor);
+                }
+            }
+        };
+
+        dfsHelper(start);
+
+
+        return result.includes(needle) ? result : null;
+    }
 }
 
 let graph = new Graph()
 graph.addVertex('A')
 graph.addVertex('B')
+graph.addVertex('C')
+graph.addVertex('D')
 graph.addEdge('A', 'B')
-graph.printGraph()
+graph.addEdge('C', 'D')
+graph.addEdge('B','C')
+console.log(graph.DFS('C','B'))
+// graph.printGraph()
