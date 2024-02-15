@@ -55,7 +55,10 @@ class Tree:
         elif value < currentNode.value:
             return self._find(currentNode.left,value)
         return False    
-    #
+    #Traversal
+    #BFS
+    def BFS(self):
+        pass
     #
     #
 
