@@ -13,7 +13,7 @@ Welcome to the DSA repository! This is where I document my journey of learning a
 
 ## Introduction
 
-In this repository, you will find implementations of fundamental data structures and algorithms. Each directory is dedicated to a specific data structure or algorithm and contains code written in Javascript. Alongside the code, you will also find explanations, complexities, and use cases to better understand the concepts.
+In this repository, you will find implementations of fundamental data structures and algorithms. Each directory is dedicated to a specific data structure or algorithm and contains code written mainly in Javascript. Alongside the code, you will also find explanations, complexities, and use cases to better understand the concepts.
 
 ## Data Structures
 
