@@ -3,7 +3,7 @@ namespace Arrays
     class CustomArray
     {
         // declare and define array with initial values
-        public int[] Arr = new int[6];
+        public int[] Arr = new int[10];
         public int Size;
         public CustomArray()
         {
