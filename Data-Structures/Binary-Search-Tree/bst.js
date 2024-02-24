@@ -10,6 +10,21 @@ class Tree {
   constructor() {
     this.root = null;
   }
+  //invert binary tree
+  invert(){
+    this,this._invert(this.root);
+  }
+  _invert(node){
+    if(!node){
+      return;
+    }
+    //swap left and right subtrees
+    const temp = node.left;
+    node.left=node.right;
+    node.right = temp;
+    this._invert(node.left)
+    this._invert(node.right)
+  }
 
   //insert
   insert(currentNode, data) {
