@@ -7,6 +7,18 @@ class Node:
 class Tree:
     def __init__(self) :
         self.root = None
+        
+    
+    def invert(self):
+        self._invert(self.root)
+      
+    def _invert(self,currentNode):
+        if not currentNode:
+            return
+        [currentNode.left,currentNode.right]=[currentNode.right,currentNode.left]
+        self._invert(currentNode.left)
+        self._invert(currentNode.right)
+         
 
     #insert
     def insert(self,value):

@@ -12,7 +12,7 @@ class Tree {
   }
   //invert binary tree
   invert(){
-    this,this._invert(this.root);
+    this._invert(this.root);
   }
   _invert(node){
     if(!node){
