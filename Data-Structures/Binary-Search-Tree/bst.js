@@ -11,19 +11,19 @@ class Tree {
     this.root = null;
   }
   //invert binary tree
-  invert(){
+  invert() {
     this._invert(this.root);
   }
-  _invert(node){
-    if(!node){
+  _invert(node) {
+    if (!node) {
       return;
     }
     //swap left and right subtrees
     const temp = node.left;
-    node.left=node.right;
+    node.left = node.right;
     node.right = temp;
-    this._invert(node.left)
-    this._invert(node.right)
+    this._invert(node.left);
+    this._invert(node.right);
   }
 
   //insert
@@ -224,5 +224,52 @@ class Tree {
 
     return Math.max(leftHeight, rightHeight) + 1;
   }
-}
+  //width of tree
+  treeWidth() {
+    if (!this.root) {
+      return 0;
+    }
+    let maxWidth = 0;
+    const queue = [this.root];
 
+    while (queue.length > 0) {
+      const levelWidth = queue.length;
+
+      maxWidth = Math.max(maxWidth, levelWidth);
+
+      for (let i = 0; i < levelWidth; i++) {
+        const node = queue.shift();
+
+        if (node.left) {
+          queue.push(node.left);
+        }
+        if (node.right) {
+          queue.push(node.right);
+        }
+      }
+    }
+    return maxWidth;
+  }
+  //print tree
+  // print tree
+  print() {
+    this.prettyPrint(this.root);
+  }
+
+  prettyPrint(node, prefix = "", isLeft = true) {
+    if (node === null) {
+      return;
+    }
+    if (node.right !== null) {
+      this.prettyPrint(
+        node.right,
+        `${prefix}${isLeft ? "│   " : "    "}`,
+        false
+      );
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
+    if (node.left !== null) {
+      this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+  }
+}
