@@ -48,4 +48,3 @@ class Stack:
             array.insert(1,current.value)
         return array
 
-
