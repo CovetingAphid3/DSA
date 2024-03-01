@@ -6,7 +6,7 @@ class Node:
 class Stack:
     def __init__(self):
         self.head = None
-        self.size = 0
+        self.lenght = 0
 
     def append(self,data):
         node = Node(data,self.head)
@@ -16,33 +16,36 @@ class Stack:
             current = self.head
             self.head = node
             node.prev = current
-        self.size += 1 
+        self.lenght += 1
 
     def pop(self):
-        if not self.head:
-            return -1
-        else:
-            current = self.head
-            self.head = current.prev
-            current = None
-        if self.size > 0:
-            self.size -= 1    
+        if self.head is None:
+            return "Empty Stack"
+        curr = self.head
+        self.head = self.head.prev
+        self.lenght -= 1
+        return curr
+
 
     def peek(self):
-        return self.head.value
-    
+        if self.head is not None:
+            print(self.head.value)
+        else:
+            print("Stack is empty")
+
+
     def size(self):
         return self.size
 
-    def printStack(self):
+    def print_stack(self):
         array = []
         if not self.head:
             return -1
-        else:
-            current = self.head
-            array.insert(0,current.value)
-            while current.prev:
-                current = current.prev
-                array.insert(1,current.value)
-                
-        return array        
+        current = self.head
+        array.insert(0,current.value)
+        while current.prev:
+            current = current.prev
+            array.insert(1,current.value)
+        return array
+
+
