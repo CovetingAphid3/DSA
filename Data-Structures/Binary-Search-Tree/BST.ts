@@ -15,7 +15,7 @@ class BTree {
     public root: TNode | null
 
     constructor() {
-        this.root =null 
+        this.root = null
     }
     //insert node
     insert(value: number) {
@@ -48,8 +48,51 @@ class BTree {
         if (value > root?.data) return this._find(root?.right, value)
         return false
     }
+    //breadth first search
+    BFS(): number[] {
+        let result: number[] = []
+        if (!this.root) return result
+        let queue: TNode[] = [this.root]
 
+        while (queue.length) {
+            let current = queue.shift()
+            if (current) result.push(current.data)
+            if (current?.left) queue.push(current.left)
+            if (current?.right) queue.push(current.right)
+        }
+        return result
+    }
     //depth first search
+    //postorder traversal
+    postOrder(): number[] {
+        return this._postOrder(this.root)
+    }
+    private _postOrder(root: TNode | null): number[] {
+        let result: number[] = []
+        if (!root) return result
+
+        result = result.concat(this._postOrder(root.left))
+        result = result.concat(this._postOrder(root.right))
+        result.push(root.data)
+
+        return result
+
+    }
+    //preorder traversal
+    preOrder(): number[] {
+        return this._preOrder(this.root)
+    }
+    private _preOrder(root: TNode | null): number[] {
+        let result: number[] = []
+        if (!root) return result
+
+        result.push(root.data)
+        result = result.concat(this._preOrder(root.left))
+        result = result.concat(this._preOrder(root.right))
+
+        return result
+
+    }
     //inorder traversal
     inOrder(): number[] {
         return this._inOrder(this.root)
@@ -66,23 +109,13 @@ class BTree {
         return result
     }
     //return max value of tree
-    max():number|undefined{
+    max(): number | undefined {
         return this._max(this.root)
     }
     //max helper function
-    _max(root:TNode|null):number|undefined{
-        if(!root?.right) return root ? root.data :undefined
-            return this._max(root.right)
+    _max(root: TNode | null): number | undefined {
+        if (!root?.right) return root ? root.data : undefined
+        return this._max(root.right)
     }
 }
 
-let tree = new BTree()
-tree.insert(5)
-tree.insert(10)
-tree.insert(15)
-tree.insert(1)
-
-const result = tree.inOrder()
-const max = tree.max()
-console.log(max)
-console.log(result)
