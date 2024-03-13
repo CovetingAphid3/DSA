@@ -17,6 +17,18 @@ class BTree {
     constructor() {
         this.root = null
     }
+    //invert binary tree
+    invert(): void {
+        this._invert(this.root)
+    }
+    private _invert(root: TNode | null): void {
+        if(!root) return
+        const temp = root.left
+        root.left = root.right
+        root.right = temp
+        this._invert(root.left)
+        this._invert(root.right)
+    }
     //insert node
     insert(value: number) {
         this.root = this._insert(this.root, value)
@@ -118,4 +130,13 @@ class BTree {
         return this._max(root.right)
     }
 }
+let tree = new BTree()
+tree.insert(5)
+tree.insert(1)
+tree.insert(10)
+let bfs = tree.BFS()
+console.log(bfs)
+tree.invert()
+let invert = tree.BFS()
+console.log(invert)
 
