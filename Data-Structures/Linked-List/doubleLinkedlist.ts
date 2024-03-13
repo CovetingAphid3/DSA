@@ -117,6 +117,7 @@ class DoublyLinkedList {
         if (idx === this.length - 1) {
             this.deque()
         }
+        this.length--
         let curr = this.head
         for (let i = 0; i < idx; i++) {
             if (curr.next) {
@@ -224,12 +225,4 @@ class DoublyLinkedList {
 
 
 
-let list = new DoublyLinkedList()
-list.append(1)
-list.append(2)
-list.append(3)
-list.append(4)
-list.append(5)
-list.removeAt(4)
-list.printList()
 
