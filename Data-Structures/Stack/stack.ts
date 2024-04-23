@@ -20,22 +20,33 @@ class Stack {
             return
         }
         let curr = this.head;
-        while (curr.prev) {
+        while (curr) {
             result.push(curr.value)
             if (curr.prev) {
                 curr = curr.prev
+            } else {
+                break
             }
         }
-        return
+        console.log(result)
     }
-    push(value:number):void{
-        const node ={
-            value:value,
-            prev:this.head
-        } 
-        if(!this.head){
-            this.head = node
-            return
+    push(value: number): void {
+        const node = {
+            value: value,
+            prev: this.head
         }
+        this.head = node
+        this.size++
+    }
+    pop(): number | undefined {
+        if (!this.head) {
+            return undefined
+        }
+        const out = this.head
+        this.head = this.head.prev
+        this.size--
+        return out.value
+
     }
 }
+
