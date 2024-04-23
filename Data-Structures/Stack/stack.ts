@@ -1,40 +1,41 @@
-class SNode<T> {
-    public value: number
-    public next: LNode<T> | null
-
-    constructor(value: number, next: LNode<T> | null) {
-        this.value = value
-        this.next = next
-    }
-
+type SNode = {
+    value: number
+    prev: SNode | null
 }
+
 class Stack {
-    public length: number;
-    public head: LNode<number> | null
+
+    private head: SNode | null
+    private size: number
 
     constructor() {
-        this.length = 0
+        this.size = 0
         this.head = null
     }
-    push(value: number): void {
-        this.length++
-        const node = new SNode(value, null)
+
+    printStack(): void {
+        let result: number[] = []
         if (!this.head) {
+            console.log("empty stack")
+            return
+        }
+        let curr = this.head;
+        while (curr.prev) {
+            result.push(curr.value)
+            if (curr.prev) {
+                curr = curr.prev
+            }
+        }
+        return
+    }
+    push(value:number):void{
+        const node ={
+            value:value,
+            prev:this.head
+        } 
+        if(!this.head){
             this.head = node
             return
         }
-        node.next = this.head
-        this.head = node
-    }
-    pop():number|undefined{
-        if(!this.head){
-            return undefined
-        }
-        const out = this.head
-        this.head = this.head.next
-        return out.value
-    }
-    peek():number|undefined{
-        return this.head?.value
     }
 }
