@@ -13,9 +13,8 @@ func search(arr []int, needle int) bool {
 }
 
 func main() {
+	array := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-    array := []int{1,2,3,4,5,6,7,8,9}
-
-    result := search(array, 4)
-    fmt.Println(result)
+	result := search(array, 4)
+	fmt.Println(result)
 }
